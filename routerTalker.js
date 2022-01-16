@@ -1,12 +1,12 @@
 const fs = require('fs').promises;
 const bodyParser = require('body-parser');
 const express = require('express');
-const { verifyToken, 
-  verifyName, 
-  verifyAge,
-  verifyWatchedAt, 
-  verifyRate, 
-  verifyTalk,
+const { checkToken, 
+  checkName, 
+  checkAge,
+  checkWatchedAt, 
+  checkRate, 
+  checkTalk,
 } = require('./authentication');
 
 const talker = './talker.json';
@@ -23,7 +23,7 @@ const HTTP_OK_STATUS = 200;
 const HTTP_ERROR_STATUS = 404;
 
 router.get('/search',
-  verifyToken,
+  checkToken,
   async (request, response) => {
     const { q } = request.query;
     const listTalkers = await talkers();
@@ -49,12 +49,12 @@ router.get('/:id', async (request, response) => {
 });
 
 router.post('/',
-  verifyToken,
-  verifyName,
-  verifyAge,
-  verifyTalk,
-  verifyWatchedAt,
-  verifyRate,
+  checkToken,
+  checkName,
+  checkAge,
+  checkTalk,
+  checkWatchedAt,
+  checkRate,
   async (request, response) => {
     const listTalkers = await talkers();
     const newTalker = { id: listTalkers.length + 1, ...request.body };
@@ -64,12 +64,12 @@ router.post('/',
 });
 
 router.put('/:id',
-  verifyToken,
-  verifyName,
-  verifyAge,
-  verifyTalk,
-  verifyWatchedAt,
-  verifyRate,
+  checkToken,
+  checkName,
+  checkAge,
+  checkTalk,
+  checkWatchedAt,
+  checkRate,
   async (request, response) => {
     const { id } = request.params;
     const listTalkers = await talkers();
@@ -80,7 +80,7 @@ router.put('/:id',
 });
 
 router.delete('/:id',
-  verifyToken,
+  checkToken,
   async (request, response) => {
     const { id } = request.params;
     const listTalkers = await talkers();
