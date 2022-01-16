@@ -24,64 +24,49 @@ Back-End:
 - Entendimento da estrutura de uma aplicação Express e organização de código;
 - Criação de rotas e aplicação de middlewares.
 
-# Instruções para entregar seu projeto
+## Clonando o repositório:
 
-## Antes de começar a desenvolver:
+1. Faça o clone
+  * `git clone git@github.com:juan-formoso/talker-manager-project.git`.
+  * Entre na pasta do repositório clonado:
+    * `cd talker-manager-project`
 
-1. Clone o repositório
+2. Instale as dependências e restaure o arquivo `talkers.json`
+  * `npm install`
+  * `npm run restore`
 
-- `git clone git@github.com:tryber/sd-014-b-project-talker-manager.git`.
-- Entre na pasta do repositório que você acabou de clonar:
-  - `cd sd-014-b-project-talker-manager`
+3. Crie uma branch a partir da branch `main`
+  * `git checkout -b my-new-branch`
 
-2. Instale as dependências [**Caso existam**]
+4. Se divirta para fazer o que quiser :)
 
-- `npm install`
+### Rodando a aplicação
 
-3. Crie uma branch a partir da branch `master`
+Este projeto utiliza o [Nodemon](https://nodemon.io) para monitorar as mudanças nos arquivos e reiniciar o servidor automaticamente.
 
-- Verifique que você está na branch `master`
-  - Exemplo: `git branch`
-- Se não estiver, mude para a branch `master`
-  - Exemplo: `git checkout master`
-- Agora crie uma branch à qual você vai submeter os `commits` do seu projeto
-  - Você deve criar uma branch no seguinte formato: `nome-de-usuario-nome-do-projeto`
-  - Exemplo: `git checkout -b joaozinho-sd-014-b-project-talker-manager`
-
-### Linter
-
-Usaremos o [ESLint](https://eslint.org/) para fazer a análise estática do seu código.
-
-Este projeto já vem com as dependências relacionadas ao _linter_ configuradas nos arquivos `package.json`.
-
-Para poder rodar o `ESLint` em um projeto basta executar o comando `npm install` dentro do projeto e depois `npm run lint`. Se a análise do `ESLint` encontrar problemas no seu código, tais problemas serão mostrados no seu terminal. Se não houver problema no seu código, nada será impresso no seu terminal.
-
-Você pode também instalar o plugin do `ESLint` no `VSCode`, bastar ir em extensions e baixar o [plugin `ESLint`](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint).
-
-### Live reload
-
-Usaremos o [Nodemon](https://nodemon.io) para monitorar as mudanças nos arquivos e reiniciar o servidor automaticamente.
-
-Este projeto já vem com as dependências relacionadas ao _nodemon_ configuradas no arquivo `package.json`.
+Suas dependências já estão configuradas no arquivo `package.json`.
 
 Para iniciar o servidor em modo de desenvolvimento basta executar o comando `npm run dev`. Este comando fará com que o servidor reinicie de forma automática ao salvar uma modificação realizada nos arquivos do projeto.
 
----
+## Rodando os testes
 
-## Testes
+Este projeto utiliza o [Jest](https://jestjs.io/pt-BR/) e o [Frisby](https://docs.frisbyjs.com/) para fazer os testes de api.
 
-Usaremos o [Jest](https://jestjs.io/pt-BR/) e o [Frisby](https://docs.frisbyjs.com/) para fazer os testes de api.
+OBS: Eu **NÃO** fui o responsável pela construção dos arquivos de testes deste projeto, os créditos vão para a equipe de ensino da **Trybe**!
 
-Este projeto já vem configurado e com suas dependências
-
-### Executando todos os testes
-
-Para poder executar os testes, inicie sua aplicação com `npm run dev`, em seguida, basta executar o comando `npm test` e **todos** os seus testes serão executados.
+Para poder executar os testes, inicie a aplicação com `npm run dev`, em seguida, basta executar o comando `npm test` e **todos** os testes serão executados.
 
 ### Executando um teste específico
 
-Para executar um teste expecífico, inicie sua aplicação com `npm run dev`, em seguida, basta executar o comando `npm test nome-do-teste`.
+Para executar um teste em específico, inicie a aplicação com `npm run dev`, em seguida, basta executar o comando `npm test nome-do-arquivo-de-teste`.
 
 Ex: Para executar o teste referente ao **login**, basta digitar `npm test login`.
 
----
+### DICA
+
+Você pode utilizar **Postman, Insomnia ou httpie** para visualizar a API com mais precisão.
+
+> Links para os sites:
+  * [Postman](https://www.postman.com/)
+  * [Insomnia](https://insomnia.rest/)
+  * [htppie](https://httpie.io/)
