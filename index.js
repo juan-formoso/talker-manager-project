@@ -1,8 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const routerTalker = require('./routerTalker');
-const { checkEmail, checkPassword } = require('./authentication');
-const generateToken = require('./token');
+const { verifyEmail, verifyPassword } = require('./authentication');
+const createToken = require('./token');
 
 const app = express();
 app.use(bodyParser.json());
@@ -17,11 +17,9 @@ app.get('/', (_request, response) => {
 app.use('/talker', routerTalker);
 
 app.post('/login',
-  checkEmail,
-  checkPassword,
-  (_request, response) => response.status(HTTP_OK_STATUS)
-  .json({ token: generateToken(),
-}));
+verifyEmail,
+verifyPassword,
+(_request, response) => response.status(HTTP_OK_STATUS).json({ token: createToken() }));
 
 app.listen(PORT, () => {
   console.log('Online');
