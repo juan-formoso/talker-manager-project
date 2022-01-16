@@ -1,6 +1,6 @@
 const HTTP_ERROR_STATUS = 400;
 
-const verifyEmail = (request, response, next) => {
+const checkEmail = (request, response, next) => {
   const { email } = request.body;
   const emailRegex = /^\w+@\w+.com$/;
   const testEmail = emailRegex.test(email); 
@@ -14,7 +14,7 @@ const verifyEmail = (request, response, next) => {
   return next();
 };
 
-const verifyPassword = (request, response, next) => {
+const checkPassword = (request, response, next) => {
   const { password } = request.body;
   if (!password || password === '') {
     return response.status(HTTP_ERROR_STATUS).json({ message: 'O campo "password" é obrigatório' });
@@ -26,7 +26,7 @@ const verifyPassword = (request, response, next) => {
   return next();
 };
 
-const verifyToken = (request, response, next) => {
+const checkToken = (request, response, next) => {
   const { authorization } = request.headers;
   if (!authorization) {
     return response.status(401).json({ message: 'Token não encontrado' });
@@ -37,7 +37,7 @@ const verifyToken = (request, response, next) => {
   return next();
 };
 
-const verifyName = (request, response, next) => {
+const checkName = (request, response, next) => {
   const { name } = request.body;
   if (!name || name === '') {
     return response.status(HTTP_ERROR_STATUS).json({ message: 'O campo "name" é obrigatório' });
@@ -49,7 +49,7 @@ const verifyName = (request, response, next) => {
   return next();
 };
 
-const verifyAge = (request, response, next) => {
+const checkAge = (request, response, next) => {
   const { age } = request.body;
   if (!age || age === '') {
     return response.status(HTTP_ERROR_STATUS).json({ message: 'O campo "age" é obrigatório' });
@@ -61,7 +61,7 @@ const verifyAge = (request, response, next) => {
   return next();
 };
 
-const verifyTalk = (request, response, next) => {
+const checkTalk = (request, response, next) => {
   const { talk } = request.body;
   if ((!talk || !talk.watchedAt) || (!talk.rate && talk.rate !== 0)) {
     return response.status(HTTP_ERROR_STATUS)
@@ -70,7 +70,7 @@ const verifyTalk = (request, response, next) => {
   return next();
 };
 
-const verifyWatchedAt = (request, response, next) => {
+const checkWatchedAt = (request, response, next) => {
   const { talk: { watchedAt } } = request.body;
   const regexWatchedAt = /^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$/;
   const testWatchedAt = regexWatchedAt.test(watchedAt);
@@ -81,7 +81,7 @@ const verifyWatchedAt = (request, response, next) => {
   return next();
 };
 
-const verifyRate = (request, response, next) => {
+const checkRate = (request, response, next) => {
   const { talk: { rate } } = request.body;
   if (rate < 1 || rate > 5) {
     return response.status(HTTP_ERROR_STATUS)
@@ -90,12 +90,12 @@ const verifyRate = (request, response, next) => {
   return next();
 };
 
-module.exports = { verifyEmail,
-  verifyPassword,
-  verifyToken,
-  verifyName,
-  verifyAge,
-  verifyTalk,
-  verifyWatchedAt,
-  verifyRate,
+module.exports = { checkEmail,
+  checkPassword,
+  checkToken,
+  checkName,
+  checkAge,
+  checkTalk,
+  checkWatchedAt,
+  checkRate,
 };
