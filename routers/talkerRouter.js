@@ -90,8 +90,8 @@ router.get('/search', (req, res) => {
       if (!q || q === '') {
         res.status(200).json(result);
       }
-      const arr = result.filter((item) => item.name.includes(q));
-      res.status(200).json(arr);
+      const array = result.filter((item) => item.name.includes(q));
+      res.status(200).json(array);
     })
     .catch((err) => res.status(401).json({ message: err.message }));
 });
@@ -139,15 +139,15 @@ router.put('/:id', (req, res) => {
     .then((result) => JSON.parse(result))
     .then((data) => {
       const index = data.findIndex((item) => item.id === +id);
-      const arr = [...data];
+      const array = [...data];
       checks(authorization, name, age, talk);
       if (index === -1) {
         res.status(404).json({ message: 'Not found' });
       } else {
-        arr[index] = { id: +id, name, age, talk };
-        fs.writeFile(fileName, JSON.stringify(arr));
+        array[index] = { id: +id, name, age, talk };
+        fs.writeFile(fileName, JSON.stringify(array));
       }
-      res.status(200).json(arr[index]);
+      res.status(200).json(array[index]);
     })
     .catch((err) => res.status(err.code).json({ message: err.message }));
 });
@@ -158,15 +158,15 @@ router.delete('/:id', (req, res) => {
   fs.readFile(fileName)
     .then((result) => JSON.parse(result))
     .then((result) => {
-      const arr = [...result];
+      const array = [...result];
       const index = result.findIndex((item) => item.id === +id);
       validateToken(authorization);
       if (index === -1) {
         res.status(404).json({ message: 'Not found!' });
       }
-      arr.splice(index, 1);
-      fs.writeFile(fileName, JSON.stringify(arr));
-      res.status(200).json({ message: 'Pessoa palestrante deletada com sucesso' });
+      array.splice(index, 1);
+      fs.writeFile(fileName, JSON.stringify(array));
+      res.status(204).json({ message: 'Pessoa palestrante deletada com sucesso' });
     })
     .catch((err) => res.status(err.code).json({ message: err.message }));
 });
